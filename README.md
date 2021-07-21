@@ -2,3 +2,8 @@
 # updated name of project
 
 Run : composer install
+ 
+
+Load fixtures : 
+
+php bin/console doctrine:fixtures:load
