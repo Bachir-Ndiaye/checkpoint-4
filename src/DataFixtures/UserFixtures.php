@@ -30,7 +30,7 @@ class UserFixtures extends Fixture
         $admin->setEmail('admin@gmail.com');
         $admin->setLastname('Admin');
         $admin->setFirstname('Admin');
-        $admin->setRoles(['ROLE_ADMIN,ROLE_USER']);
+        $admin->setRoles(['ROLE_ADMIN']);
         $admin->setAvatar('https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png');
         $admin->setPassword($this->passwordEncoder->encodePassword($user, 'admin'));
 

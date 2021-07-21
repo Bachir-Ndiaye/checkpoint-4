@@ -1,0 +1,32 @@
+:root{
+    --black: black;
+    --white: white;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+a{
+    text-decoration: none;
+    color: var(--black);
+}
+
+.fixed-board{
+    display: grid;
+    position: fixed;
+    width: 350px;
+    height: 100vh;
+    border: 1px solid black;
+}
+
+.main-students{
+    margin-left: 400px;
+}
+
+.fixed-board a{
+    padding: 1rem 1.5rem;
+}
+
+

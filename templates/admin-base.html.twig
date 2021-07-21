@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{%  block aside %}
+    <aside>
+        <h1>Bonjour, {{ app.user.Lastname }}</h1>
+        <div class="fixed-board">
+            <a href="{{ path('profile_students', {'id': app.user.getId}) }}">Mes èleves</a>
+            <a href="#">Envoyer une partition (pdf)</a>
+            <a href="#">Envoyer une video</a>
+            <a href="#">Envoyer un audio</a>
+            <a href="#">Envoyer une note</a>
+            <a href="#">Messagerie</a>
+        </div>
+    </aside>
+{% endblock %}

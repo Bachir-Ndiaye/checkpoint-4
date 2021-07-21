@@ -14,9 +14,8 @@ class HomeController extends AbstractController
      */
     public function index(Request $request): Response
     {
-        dd($request);
         return $this->render('home/index.html.twig', [
-           
+
         ]);
     }
 }
