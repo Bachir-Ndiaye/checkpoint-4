@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Message;
+use App\Entity\Notice;
 use App\Form\MessageType;
+use App\Form\NoticeType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -57,6 +59,10 @@ class ProfileController extends AbstractController
      */
     public function send(Request $request, User $user, EntityManagerInterface $manager, UserRepository $userRepository): Response
     {
+        $role = $userRepository->findOneBy([
+            'id' => $user->getId()
+        ]);
+
         $message = new Message();
         $form = $this->createForm(MessageType::class, $message);
 
@@ -70,7 +76,6 @@ class ProfileController extends AbstractController
 
             $message->setCreatedAt(new \DateTime('now'));
             $message->setMessage($_POST['message']['message']);
-            //$message->setMessage($_POST['message']['title']);
             $message->setTitle('title');
             $message->setIsRead(false);
             $message->setSender($this->getUser());
@@ -88,7 +93,13 @@ class ProfileController extends AbstractController
             ]);
         }
 
-        //dd($user->getReceived()->getValues());
+        if($role->getRoles()[0] == "ROLE_ADMIN"){
+            return $this->render('admin/messages.html.twig', [
+                'form' => $form->createView(),
+                'received' => $user->getReceived()->getValues(),
+                'sent' => $user->getSent()->getValues()
+            ]);
+        }
 
         return $this->render('profile/messages.html.twig', [
             'form' => $form->createView(),
@@ -97,5 +108,32 @@ class ProfileController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/{id}/notice", name="notice", methods={"GET","POST"})
+     */
+    public function notice(Request $request, User $user, EntityManagerInterface $manager){
+
+        $notice = new Notice();
+        $form = $this->createForm(NoticeType::class, $notice);
+
+        if($_SERVER['REQUEST_METHOD'] === "POST"){
+
+            $notice->setNote($_POST['notice']['note']);
+            $notice->setDescription($_POST['notice']['description']);
+            $notice->setPseudo($this->getUser());
+
+            $this->addFlash('success', 'Votre d\'avoir donné votre avis');
+            $manager->persist($notice);
+            $manager->flush();
+
+            return $this->render('profile/index.html.twig',[
+                'user' => $user
+            ]);
+        }
+
+        return $this->render('profile/notice.html.twig',[
+            'form' => $form->createView()
+        ]);
+    }
 
 }

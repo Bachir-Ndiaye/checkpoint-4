@@ -4,12 +4,27 @@
     <aside>
         <h1>Bonjour, {{ app.user.Lastname }}</h1>
         <div class="fixed-board">
-            <a href="{{ path('profile_students', {'id': app.user.getId}) }}">Mes èleves</a>
-            <a href="#">Envoyer une partition (pdf)</a>
-            <a href="#">Envoyer une video</a>
-            <a href="#">Envoyer un audio</a>
-            <a href="#">Envoyer une note</a>
-            <a href="{{ path('profile_send', {'id': app.user.getId}) }}">Messagerie</a>
+            <a href="{{ path('profile_index', {'id': app.user.getId}) }}">
+                <i class="fas fa-home"></i>
+                Accueil
+            </a>
+            <a href="{{ path('profile_students', {'id': app.user.getId}) }}">
+                <i class="fas fa-user"></i>
+                Mes èleves
+            </a>
+            <a href="#">
+                <i class="fas fa-file"></i>
+                Envoyer un média
+            </a>
+            <a href="{{ path('profile_send', {'id': app.user.getId}) }}">
+                <i class="fas fa-envelope-square"></i>
+                Messagerie
+            </a>
+            <a href="{{ path('app_logout') }}">
+                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                Déconnexion
+            </a>
+
         </div>
     </aside>
 {% endblock %}

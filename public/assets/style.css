@@ -45,6 +45,13 @@ footer, header{
     border-top: 4px solid var(--main-orange);
     border-bottom: 4px solid var(--main-orange);
 }
+
+footer{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
 header{
     position: fixed;
     top:0;
@@ -104,6 +111,7 @@ header{
 .main-body{
     margin-top: 250px;
     height: 60vh;
+    margin-bottom: 500px;
 }
 
 #span-username img{
@@ -112,10 +120,14 @@ header{
     border-radius: 50%;
 }
 
-#message label{
+#message label, #notice label{
     display: none;
 }
-#message_Envoyer{
+
+#message input, #notice input{
+    margin: 1rem 0;
+}
+#message_Envoyer, #notice_Envoyer{
     background-color: var(--wheat);
     padding: .5rem 1.5rem;
     font-weight: bold;
@@ -123,4 +135,52 @@ header{
     margin-top: 2rem;
 }
 
+.box-msg img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.box-msg h5{
+    border-radius: 25px;
+    padding: .5rem 1rem;
+    border: 1px solid var(--black);
+    width: max-content;
+}
+
+.box-msg span{
+    font-style: italic;
+    font-weight: bold;
+}
+.box-msg{
+    margin: 1rem 0;
+    width: max-content;
+    border-bottom: 1px solid var(--black);
+}
+.main{
+    margin-bottom: 450px;
+}
+.activities{
+    padding: 3rem 0;
+    width: 60%;
+    margin:auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.box-activities img{
+    box-shadow: 0 0 10px var(--main-orange);
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.box-activities{
+    margin: 1rem 0;
+    display: inline-block;
+    width: 300px;
+    height: 300px;
+    text-align: center;
+}
 
