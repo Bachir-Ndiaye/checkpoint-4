@@ -200,14 +200,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getAvatar(): ?string
     {
-        return $this->avatar;
+        return $this->avatar  ?? 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
     }
 
     public function setAvatar(string $avatar): self
     {
         $this->avatar = $avatar;
 
-        return $this;
+        return $this ;
     }
 
     public function getTeacher(): ?self

@@ -1,0 +1,41 @@
+{% extends 'student-base.html.twig' %}
+
+{% block body %}
+
+    <div class="main-body">
+        <div class="received-msq">
+            <h2>
+                <i class="fas fa-download"></i>
+                Messages reçus () :
+            </h2>
+            {% if received is not empty %}
+                {% for received in received  %}
+                    {{ received.message }}
+                {% endfor %}
+            {% else %}
+                <p>Pas de messages reçus.</p>
+            {% endif %}
+        </div>
+
+        <div class="sent-msg">
+            <h2>
+                <i class="fas fa-upload"></i>
+                Messages envoyés () :</h2>
+            {% if sent is not empty %}
+                {% for sent in sent  %}
+                    {{ sent.message }}
+                {% endfor %}
+            {% else %}
+                <p>Pas de messages envoyés</p>
+            {% endif %}
+        </div>
+
+        <div class="write-msg">
+            <h2>
+                <i class="fas fa-paper-plane"></i>
+                Envoyer un message :</h2>
+            {{ form(form) }}
+        </div>
+    </div>
+{% endblock %}
+

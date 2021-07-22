@@ -1,0 +1,23 @@
+<div class="navbar nav">
+
+    <a class="nav-link" href="{{ path('home') }}" id="element-navbar">Acceuil</a>
+    <a class="nav-link" href="#" id="element-navbar">Pédagogie</a>
+    {% if not app.user %}
+        <div class="login">
+            <div class="m-auto"><i class='fas fa-user'></i></div>
+            <div class="connect"><a href="{{ path('app_login') }}">Se connecter</a></div>
+        </div>
+    {% elseif app.user %}
+        <div class="login">
+            <div class="connect">
+                <span id="span-username">
+                    <a href="{{ path('profile_index',{'id': app.user.getId}) }}">
+                        <img src="{{ app.user.getAvatar }}" alt="">
+                    </a>
+                </span>
+            </div>
+        </div>
+    {% endif %}
+    <a class="nav-link" href="{{ path('app_register') }}" id="element-navbar">Inscriptions</a>
+    <a class="nav-link" href="#" id="element-navbar">Lieux</a>
+</div>

@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'student-base.html.twig' %}
 
-{% block title %}Espace Eleve - {{ app.user.firstname }}!{% endblock %}
+{% block title %}Espace Eleve - {{ app.user.firstname }}{% endblock %}
 
 {% block body %}
-    Bienvenue dans votre espace - {{ app.user.firstname }}
-
-    <h1>Votre prof actuel est </h1>
+    <div class="main-body">
+        <h1>🎉 Bienvenue dans votre espace étudiant 🎉</h1>
+    </div>
 {% endblock %}

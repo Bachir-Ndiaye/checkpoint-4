@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Espace Eleve - {{ app.user.firstname }}{% endblock %}
+
+{% block aside %}
+    <aside>
+        <h1>Bonjour, {{ app.user.Lastname }}</h1>
+        <div class="fixed-board">
+            <a href="{{ path('profile_index', {'id': app.user.getId}) }}">
+                <i class="fas fa-home"></i>
+                Accueil
+            </a>
+            <a href="#">
+                <i class="fas fa-file"></i>
+                Mes documents reçus
+            </a>
+            <a href="#">
+                <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                Noter son prof
+            </a>
+            <a href="{{ path('profile_send', {'id': app.user.getId}) }}">
+                <i class="fas fa-envelope-square"></i>
+                Messagerie
+            </a>
+        </div>
+    </aside>
+{% endblock %}
+{% block body %}
+
+{% endblock %}

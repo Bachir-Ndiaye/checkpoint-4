@@ -1,11 +1,14 @@
 :root{
     --black: black;
     --white: white;
+    --main-orange: #ffa500;
+    --wheat : #f5deb3;
 }
 
 *{
     padding: 0;
     margin: 0;
+    font-family: 'Lato', sans-serif;
 }
 
 a{
@@ -14,19 +17,110 @@ a{
 }
 
 .fixed-board{
-    display: grid;
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
     position: fixed;
     width: 350px;
-    height: 100vh;
-    border: 1px solid black;
+    height: max-content;
 }
 
-.main-students{
+.main-body{
     margin-left: 400px;
 }
 
 .fixed-board a{
     padding: 1rem 1.5rem;
+    font-weight: bold;
+    font-size: large;
+}
+
+.fixed-board .fas, .fixed-board .fa{
+    color: var(--main-orange);
+}
+footer, header{
+    background-color: var(--black);
+    padding: 1.5rem 0;
+    color: var(--white);
+    border-top: 4px solid var(--main-orange);
+    border-bottom: 4px solid var(--main-orange);
+}
+header{
+    position: fixed;
+    top:0;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    padding: 1.5rem 5rem;
+}
+#bachir{
+    color: var(--main-orange);
+}
+
+.login{
+    display: grid;
+    justify-items: center;
+}
+.nav-link{
+    color: var(--white);
+    font-size: x-large;
+    font-weight: bold;
+    letter-spacing: .2rem;
+}
+.connect a{
+    color:var(--main-orange);
+}
+.login{
+    border-radius: 50%;
+    border: 2px solid var(--main-orange);
+    width: 120px;
+    height: 120px;
+}
+
+.banner-home{
+    background-image: url("https://cdn.pixabay.com/photo/2015/04/15/09/47/men-723557__340.jpg");
+    padding: 15rem;
+    background-size: cover;
+}
+.banner-home h1{
+    color: var(--white);
+}
+
+.next-school-infos{
+    background-color: var(--black);
+    padding: 2rem;
+    display: flex;
+    justify-content: space-evenly;
+    color: var(--wheat);
+}
+.next-school-infos a {
+    background-color: var(--wheat);
+    border-radius: 25px;
+    padding: .8rem 1.5rem;
+    color: var(--black);
+    font-weight: bold;
+}
+
+.main-body{
+    margin-top: 250px;
+    height: 60vh;
+}
+
+#span-username img{
+    width: 116px;
+    height: 116px;
+    border-radius: 50%;
+}
+
+#message label{
+    display: none;
+}
+#message_Envoyer{
+    background-color: var(--wheat);
+    padding: .5rem 1.5rem;
+    font-weight: bold;
+    border: 1px solid var(--black);
+    margin-top: 2rem;
 }
 
 

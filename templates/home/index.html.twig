@@ -1,7 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}La musique pour tous{% endblock %}
 
 {% block body %}
+    <!--banner-->
+    <div class="banner-home">
+        <h1 class="my-auto text-center">Bienvenue sur ce checkpoint 4</h1>
+    </div>
 
+    <!-- next school annuitant -->
+    <div class="next-school-infos">
+        <h2>Toutes les informations pour la prochaine rentrée scolaire</h2>
+        <a href="{{ path('contact') }}">Contactez-nous</a>
+    </div>
 {% endblock %}
