@@ -1,7 +1,7 @@
 <div class="navbar nav">
 
     <a class="nav-link" href="{{ path('home') }}" id="element-navbar">Acceuil</a>
-    <a class="nav-link" href="#" id="element-navbar">Pédagogie</a>
+    <a class="nav-link" href="{{ path('pedagogy') }}" id="element-navbar">Pédagogie</a>
     {% if not app.user %}
         <div class="login">
             <div class="m-auto"><i class='fas fa-user'></i></div>
@@ -19,5 +19,5 @@
         </div>
     {% endif %}
     <a class="nav-link" href="{{ path('app_register') }}" id="element-navbar">Inscriptions</a>
-    <a class="nav-link" href="#" id="element-navbar">Lieux</a>
+    <a class="nav-link" href="{{ path('place') }}" id="element-navbar">Lieux</a>
 </div>

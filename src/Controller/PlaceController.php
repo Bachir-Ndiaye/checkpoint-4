@@ -6,14 +6,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class PedagogyController extends AbstractController
+class PlaceController extends AbstractController
 {
     /**
-     * @Route("/pedagogy", name="pedagogy")
+     * @Route("/place", name="place")
      */
     public function index(): Response
     {
-        return $this->render('pedagogy/index.html.twig', [
+        return $this->render('place/index.html.twig', [
 
         ]);
     }
