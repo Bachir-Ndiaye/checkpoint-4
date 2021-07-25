@@ -82,6 +82,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $teacherNotice;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Media::class, mappedBy="users")
+     */
+    private $media;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -89,6 +94,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->received = new ArrayCollection();
         $this->notices = new ArrayCollection();
         $this->teacherNotice = new ArrayCollection();
+        $this->media = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -373,6 +379,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             if ($teacherNotice->getTeacher() === $this) {
                 $teacherNotice->setTeacher(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Media[]
+     */
+    public function getMedia(): Collection
+    {
+        return $this->media;
+    }
+
+    public function addMedium(Media $medium): self
+    {
+        if (!$this->media->contains($medium)) {
+            $this->media[] = $medium;
+            $medium->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMedium(Media $medium): self
+    {
+        if ($this->media->removeElement($medium)) {
+            $medium->removeUser($this);
         }
 
         return $this;
