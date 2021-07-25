@@ -6,7 +6,9 @@
         <div class="received-msq">
             <h2>
                 <i class="fas fa-download"></i>
-                Messages reçus () :
+                Messages reçus ( {% if received is defined %}
+                    {{ received|length }}
+                {% endif %}) :
             </h2>
             {% if received is not empty %}
                 {% for received in received  %}
@@ -29,7 +31,9 @@
         <div class="sent-msg">
             <h2>
                 <i class="fas fa-upload"></i>
-                Messages envoyés () :</h2>
+                Messages envoyés ( {% if sent is defined %}
+                    {{ sent| length }}
+                {% endif %}) :</h2>
             {% if sent is not empty %}
                 {% for sent in sent  %}
                     <div class="box-msg">

@@ -1,0 +1,22 @@
+{% extends 'student-base.html.twig' %}
+
+{% block body %}
+    <div class="main-body">
+        <h1>
+            👨‍💻 Mes collègues
+        </h1>
+
+        <div class="students">
+            {% for collegue in collegues %}
+                <div class="student-box">
+                    <div class="sb">
+                        <i class="fas fa-user"></i>
+                        {{ collegue.lastname }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+{% endblock %}
+

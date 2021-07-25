@@ -35,7 +35,7 @@ a{
     font-size: large;
 }
 
-.fixed-board .fas, .fixed-board .fa{
+.fixed-board .fas, .fixed-board .fa, .fa-list{
     color: var(--main-orange);
 }
 footer, header{
@@ -184,3 +184,40 @@ header{
     text-align: center;
 }
 
+.fa-map-marker-alt{
+    font-size: xxx-large;
+    color: var(--main-orange);
+}
+
+.place{
+    display: flex;
+}
+
+.place h1{
+    font-weight: bold;
+}
+
+.notes, .student-box{
+    display: grid;
+}
+#noteur{
+    font-weight: bold;
+    font-style: italic;
+}
+
+#note{
+    font-size: x-large;
+    color: var(--main-orange);
+}
+.note-box{
+    margin: 1rem 0;
+}
+.sb{
+    margin-bottom: 1rem;
+    display: flex;
+}
+.sb .fa-user{
+    font-size: x-large;
+    color: var(--main-orange);
+    margin-right: 2rem;
+}

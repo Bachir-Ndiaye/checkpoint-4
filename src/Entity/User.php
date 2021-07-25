@@ -77,12 +77,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $notices;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Notice::class, mappedBy="teacher")
+     */
+    private $teacherNotice;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
         $this->sent = new ArrayCollection();
         $this->received = new ArrayCollection();
         $this->notices = new ArrayCollection();
+        $this->teacherNotice = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -336,6 +342,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($notice->getPseudo() === $this) {
                 $notice->setPseudo(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Notice[]
+     */
+    public function getTeacherNotice(): Collection
+    {
+        return $this->teacherNotice;
+    }
+
+    public function addTeacherNotice(Notice $teacherNotice): self
+    {
+        if (!$this->teacherNotice->contains($teacherNotice)) {
+            $this->teacherNotice[] = $teacherNotice;
+            $teacherNotice->setTeacher($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTeacherNotice(Notice $teacherNotice): self
+    {
+        if ($this->teacherNotice->removeElement($teacherNotice)) {
+            // set the owning side to null (unless already changed)
+            if ($teacherNotice->getTeacher() === $this) {
+                $teacherNotice->setTeacher(null);
             }
         }
 

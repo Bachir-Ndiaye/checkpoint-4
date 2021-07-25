@@ -10,9 +10,9 @@
                 <i class="fas fa-home"></i>
                 Accueil
             </a>
-            <a href="#">
+            <a href="{{ path('profile_collegues', {'id': app.user.getId}) }}">
                 <i class="fas fa-file"></i>
-                Mes documents reçus
+                Mes collègues
             </a>
             <a href="{{ path('profile_notice', {'id': app.user.getId}) }}">
                 <i class="fa fa-bar-chart" aria-hidden="true"></i>

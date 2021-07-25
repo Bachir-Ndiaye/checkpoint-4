@@ -12,9 +12,9 @@
                 <i class="fas fa-user"></i>
                 Mes èleves
             </a>
-            <a href="#">
+            <a href="{{ path('profile_notes', {'id': app.user.getId}) }}">
                 <i class="fas fa-file"></i>
-                Envoyer un média
+                Notes reçus
             </a>
             <a href="{{ path('profile_send', {'id': app.user.getId}) }}">
                 <i class="fas fa-envelope-square"></i>

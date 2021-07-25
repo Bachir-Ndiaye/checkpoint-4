@@ -32,6 +32,11 @@ class Notice
      */
     private $pseudo;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="teacherNotice")
+     */
+    private $teacher;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class Notice
     public function setPseudo(?User $pseudo): self
     {
         $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    public function getTeacher(): ?User
+    {
+        return $this->teacher;
+    }
+
+    public function setTeacher(?User $teacher): self
+    {
+        $this->teacher = $teacher;
 
         return $this;
     }

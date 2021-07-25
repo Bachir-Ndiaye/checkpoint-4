@@ -1,16 +1,24 @@
 {% extends 'admin-base.html.twig' %}
 
-{% block title %}Espace Admin - {{ app.user.firstname }}!{% endblock %}
+{% block title %}Espace Admin - {{ app.user.firstname }}{% endblock %}
 
 {% block body %}
    <div class="main-body">
-       <h1>La liste de vos eleves</h1>
+       <h1>
+           <i class="fas fa-list"></i>
+           La liste de vos élèves
+       </h1>
 
-       <ul>
+       <div class="students">
            {% for student in students %}
-                <li>{{ student.lastname }}</li>
+           <div class="student-box">
+                   <div class="sb">
+                       <i class="fas fa-user"></i>
+                       {{ student.lastname }}
+                   </div>
+           </div>
            {% endfor %}
-       </ul>
+       </div>
    </div>
 
 {% endblock %}
