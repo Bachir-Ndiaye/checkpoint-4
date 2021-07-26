@@ -23,11 +23,7 @@ class MessageType extends AbstractType
                 "class" => User::class,
                 "choice_label" => "lastname"
             ])
-            ->add('Envoyer', SubmitType::class, [
-                "attr" => [
-                    "class" => "btn btn primary"
-                ]
-            ])
+            ->add('Envoyer', SubmitType::class)
         ;
     }
 

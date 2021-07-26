@@ -1,0 +1,21 @@
+{% extends 'student-base.html.twig' %}
+
+{% block body %}
+    <div class="main-body">
+        <h1>
+            💡 Mes cours
+        </h1>
+
+        {% for media in medias %}
+            <p>
+                Type de fichier : {{ media.type }}
+            </p>
+            <h4>
+                <a href="{{ asset('uploads/files/' ~ media.path ~ ' ') }}"  download="Lessons.{{ media.type }}">
+                    Télécharger ce média  <i class="fas fa-download"></i> - Reçu le {{ media.createdAt|date }}
+                </a>
+            </h4>
+        {% endfor %}
+    </div>
+{% endblock %}
+

@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Media;
 use App\Entity\Message;
 use App\Entity\Notice;
+use App\Form\MediaType;
 use App\Form\MessageType;
 use App\Form\NoticeType;
+use App\Repository\MediaRepository;
 use App\Repository\NoticeRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -14,6 +17,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
+use App\Service\FileUploader;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @Route("/profile", name="profile_")
@@ -169,6 +174,63 @@ class ProfileController extends AbstractController
         return $this->render('profile/notice.html.twig',[
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/{id}/media", name="media")
+     * IsGranted("ROLE_ADMIN")
+     */
+    public function media(User $user, FileUploader $fileUploader, EntityManagerInterface $manager, Request $request, UserRepository $userRepository): Response
+    {
+        $media = new Media();
+        $form = $this->createForm(MediaType::class, $media);
+
+        if($_SERVER['REQUEST_METHOD'] === "POST"){
+
+            /** @var UploadedFile $mediaUrlFile */
+            $mediaUrlFile = $request->files->all()['media']['path'];
+
+            $studentId = $_POST['media']['users']['0'];
+
+            if (!empty($mediaUrlFile)) {
+                $mediaUrlFileName = $fileUploader->upload($mediaUrlFile);
+                $media->setPath($mediaUrlFileName);
+                $media->setType($mediaUrlFile->getClientMimeType());
+                $media->setCreatedAt(new \DateTime('now'));
+                $media->setUsers($userRepository->findOneBy([
+                    'id' => $studentId
+                ]));
+
+                $manager->persist($media);
+                $manager->flush();
+
+                return $this->render('admin/index.html.twig',[
+                    'user' => $user
+                ]);
+            }
+
+        }
+
+        return $this->render('admin/media.html.twig',[
+            'form' => $form->createView()
+        ]);
+
+    }
+
+    /**
+     * @Route("/{id}/mediaStudent", name="media_student")
+     */
+    public function mediaStudent(User $user, MediaRepository $mediaRepository): Response
+    {
+
+        $medias = $mediaRepository->findBy([
+            'users' => $user->getId()
+        ]);
+
+        return $this->render('profile/media.html.twig',[
+            'medias' => $medias
+        ]);
+
     }
 
 }

@@ -6,6 +6,8 @@ use App\Repository\MediaRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=MediaRepository::class)
@@ -30,13 +32,18 @@ class Media
     private $path;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="media")
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="media")
      */
     private $users;
 
     public function __construct()
     {
-        $this->users = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -68,26 +75,27 @@ class Media
         return $this;
     }
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getUsers(): Collection
+
+    public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->users;
+        return $this->createdAt;
     }
 
-    public function addUser(User $user): self
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-        }
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function removeUser(User $user): self
+    public function getUsers(): ?User
     {
-        $this->users->removeElement($user);
+        return $this->users;
+    }
+
+    public function setUsers(?User $users): self
+    {
+        $this->users = $users;
 
         return $this;
     }

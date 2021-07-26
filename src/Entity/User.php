@@ -83,7 +83,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $teacherNotice;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Media::class, mappedBy="users")
+     * @ORM\OneToMany(targetEntity=Media::class, mappedBy="users")
      */
     private $media;
 
@@ -234,35 +234,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection|self[]
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
-
-    public function addUser(self $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->setTeacher($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(self $user): self
-    {
-        if ($this->users->removeElement($user)) {
-            // set the owning side to null (unless already changed)
-            if ($user->getTeacher() === $this) {
-                $user->setTeacher(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection|Message[]
